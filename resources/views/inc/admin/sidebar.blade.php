@@ -1,10 +1,9 @@
 <aside class="main-sidebar sidebar-dark-info elevation-4" >
-  {{-- style="background-color:#1E1E1E;" --}}
-  <a href="{{route('admin.index')}}" class="brand-link" >
+  <a href="{{route('admin.index')}}" class="brand-link bg-info" >
     <img src="{{asset($LOGO->value??'img/AdminLTELogo.png')}}"
     alt="" class="brand-image img-circle elevation-3"
       style="opacity: 1">
-    <span class="brand-text font-weight-light">{{$NAME->value??'Inventory'}}</span>
+    <span class="brand-text font-weight-light">{{$NAME->value??'Management'}}</span>
   </a>
 
   <!-- Sidebar -->
@@ -30,23 +29,16 @@
           </a>
         </li>
 
-        <li class="nav-item has-treeview {{request()->segment(2) == 'product'?'menu-open':''}}">
+        {{-- <li class="nav-item has-treeview {{request()->segment(2) == 'product'?'menu-open':''}}">
           <a href="#" class="nav-link {{request()->segment(2) == 'product'?'active':''}}">
-            <i class="nav-icon far fas fa-cubes"></i>
+            <i class="nav-icon far fas fa-check-square"></i>
             <p>
-              Products
+              Bookings
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             
-            <li class="nav-item">
-              <a href="{{route('product-category.index')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Product category</p>
-              </a>
-            </li>
-
             <li class="nav-item">
               <a href="{{route('product.create')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -60,13 +52,67 @@
               </a>
             </li>
           </ul>
+        </li> --}}
+
+        <li class="nav-item has-treeview {{request()->segment(2) == 'room'?'menu-open':''}}">
+          <a href="#" class="nav-link">
+            <i class="nav-icon far fas fa-door-closed"></i>
+            <p>
+              Room
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('roomType.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Room types</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('room.create')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('room.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage</p>
+              </a>
+            </li>
+          </ul>
         </li>
 
-        <li class="nav-item has-treeview {{request()->segment(2) == 'sale'?'menu-open':''}}">
-          <a href="#" class="nav-link {{request()->segment(2) == 'sale'?'active':''}}">
-            <i class="nav-icon far fas fa-donate"></i>
+        <li class="nav-item has-treeview {{request()->segment(2) == 'reservation'?'menu-open':''}}">
+          <a href="#" class="nav-link">
+            <i class="nav-icon far fas fa-door-closed"></i>
             <p>
-              Sales
+              Reservation
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('reservation.create')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('reservation.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        {{-- <li class="nav-item has-treeview {{request()->segment(2) == 'sale'?'menu-open':''}}">
+          <a href="#" class="nav-link">
+            <i class="nav-icon far fas fa-users"></i>
+            <p>
+              Guest
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
@@ -84,10 +130,82 @@
               </a>
             </li>
           </ul>
+        </li> --}}
+
+        {{-- <li class="nav-item has-treeview {{request()->segment(2) == 'purchase'?'menu-open':''}}">
+          <a href="#" class="nav-link">
+            <i class="nav-icon far fas fa-user-edit"></i>
+            <p>
+              Staffs
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('purchase.create')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('purchase.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage</p>
+              </a>
+            </li>
+          </ul>
+        </li> --}}
+        
+        <li class="nav-item has-treeview {{request()->segment(2) == 'menu'?'menu-open':''}}">
+          <a href="#" class="nav-link">
+            <i class="nav-icon far fas fa-cash-register"></i>
+            <p>
+              Menu
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('menu.create')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('menu.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage</p>
+              </a>
+            </li>
+          </ul>
         </li>
 
-        <li class="nav-item has-treeview {{request()->segment(2) == 'expense'?'menu-open':''}}">
-          <a href="#" class="nav-link {{request()->segment(2) == 'expense'?'active':''}}">
+        <li class="nav-item has-treeview {{request()->segment(2) == 'food'?'menu-open':''}}">
+          <a href="#" class="nav-link">
+            <i class="nav-icon far fas fa-cash-register"></i>
+            <p>
+              Food
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('food.create')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('food.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+        {{-- <li class="nav-item has-treeview {{request()->segment(2) == 'expense'?'menu-open':''}}">
+          <a href="#" class="nav-link ">
             <i class="nav-icon far fas fa-credit-card"></i>
             <p>
               Expenses
@@ -115,58 +233,10 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> --}}
 
-        <li class="nav-item has-treeview {{request()->segment(2) == 'purchase'?'menu-open':''}}">
-          <a href="#" class="nav-link {{request()->segment(2) == 'purchase'?'active':''}}">
-            <i class="nav-icon far fas fa-shopping-cart"></i>
-            <p>
-              Purchase
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="{{route('purchase.create')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('purchase.index')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Manage</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        
-        <li class="nav-item has-treeview {{request()->segment(2) == 'income'?'menu-open':''}}">
-          <a href="#" class="nav-link {{request()->segment(2) == 'income'?'active':''}}">
-            <i class="nav-icon far fas fa-cash-register"></i>
-            <p>
-              Income
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="{{route('income.create')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('income.index')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Manage</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-
-        <li class="nav-item has-treeview {{request()->segment(2) == 'customer'?'menu-open':''}}">
-          <a href="#" class="nav-link {{request()->segment(2) == 'customer'?'active':''}}">
+        {{-- <li class="nav-item has-treeview {{request()->segment(2) == 'customer'?'menu-open':''}}">
+          <a href="#" class="nav-link">
             <i class="nav-icon far fas fa-user-friends"></i>
             <p>
               Customers
@@ -187,13 +257,13 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> --}}
 
-        <li class="nav-item has-treeview {{request()->segment(2) == 'supplier'?'menu-open':''}}">
-          <a href="#" class="nav-link {{request()->segment(2) == 'supplier'?'active':''}}">
-            <i class="nav-icon far fas fa-shipping-fast"></i>
+        {{-- <li class="nav-item has-treeview {{request()->segment(2) == 'supplier'?'menu-open':''}}">
+          <a href="#" class="nav-link">
+            <i class="nav-icon far fas fa-utensils"></i>
             <p>
-              Suppliers
+              Kitchen
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
@@ -211,9 +281,27 @@
               </a>
             </li>
           </ul>
+        </li> --}}
+
+        <li class="nav-item has-treeview {{request()->segment(2) == 'feedback'?'menu-open':''}}">
+          <a href="#" class="nav-link">
+            <i class="nav-icon far fas fa-comment-alt"></i>
+            <p>
+              Feedbacks
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('feedback.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage</p>
+              </a>
+            </li>
+          </ul>
         </li>
 
-        <li class="nav-item has-treeview {{request()->segment(2) == 'quotation'?'menu-open':''}}">
+        {{-- <li class="nav-item has-treeview {{request()->segment(2) == 'quotation'?'menu-open':''}}">
           <a href="#" class="nav-link {{request()->segment(2) == 'quotation'?'active':''}}">
             <i class="nav-icon far fas fa-envelope"></i>
             <p>
@@ -235,10 +323,10 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> --}}
         
         <li class="nav-item has-treeview {{request()->segment(2) == 'setting'?'menu-open':''}}">
-          <a href="#" class="nav-link {{request()->segment(2) == 'setting'?'active':''}}">
+          <a href="#" class="nav-link">
             <i class="nav-icon far fas fa-cog"></i>
             <p>
               Settings

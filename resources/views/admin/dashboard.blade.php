@@ -30,32 +30,45 @@
         <a href="{{route('admin.index',['q'=>'yearly'])}}" class="btn {{request()->q == 'yearly'?'btn-info':'btn-secondary'}}">This Year</a>
       </div>
 
-
       <div class="row">
         <div class="col-lg-3 col-6">
           <!-- small box -->
           <div class="small-box bg-info">
             <div class="inner">
-              <h4>Rs {{number_format($totalSales)}}</h4>
+              <h4>3{{number_format($totalSales)}}</h4>
 
-              <p>Sales</p>
+              <p>Bookings</p>
             </div>
             <div class="icon">
-              <i class="fas fa-coins"></i>
+              <i class="fas fa-check-square"></i>
             </div>
             <a href="{{route('sale.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
         <div class="col-lg-3 col-6">
-          <div class="small-box bg-olive">
+          <div class="small-box bg-navy">
+            <div class="inner">
+              <h4>1{{number_format($totalProfit)}}</h4>
+
+              <p>Rooms Available</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-door-closed"></i>
+            </div>
+            <a href="{{route('summary.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+          <div class="small-box bg-success">
             <div class="inner">
               <h4>Rs {{number_format($totalIncome)}}</h4>
 
               <p>Income</p>
             </div>
             <div class="icon">
-              <i class="fas fa-user-friends"></i>
+              <i class="fas fa-coins"></i>
             </div>
             <a href="{{route('income.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
@@ -63,7 +76,7 @@
 
         <div class="col-lg-3 col-6">
           <!-- small box -->
-          <div class="small-box bg-success">
+          <div class="small-box bg-olive">
             <div class="inner">
               <h4>Rs {{number_format($totalExpense)}}</h4>
 
@@ -76,31 +89,18 @@
           </div>
         </div>
 
-        <div class="col-lg-3 col-6">
-          <div class="small-box bg-navy">
-            <div class="inner">
-              <h4>Rs {{number_format($totalProfit)}}</h4>
-
-              <p>Profit</p>
-            </div>
-            <div class="icon">
-              <i class="fas fa-money-bill-wave"></i>
-            </div>
-            <a href="{{route('summary.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-
+       
       </div>
 
       <div class="row">
-        <div class="col-12 col-sm-6 col-md-3">
+        <div class="col-6 col-sm-6 col-md-3">
           <div class="info-box shadow-hover">
-              <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-cubes"></i></span>
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cubes"></i></span>
               <div class="info-box-content">
                 <a href="{{route('product.index')}}">
-                  <span class="info-box-text text-dark">Products</span>
+                  <span class="info-box-text text-dark">Rooms</span>
                   <span class="info-box-number text-dark">
-                      {{$productCount}}
+                      5{{$productCount}}
                     <small>+</small>
                   </span>
                 </a>
@@ -108,15 +108,15 @@
           </div>
         </div>
         
-        <div class="col-12 col-sm-6 col-md-3">
+        <div class="col-6 col-sm-6 col-md-3">
           <div class="info-box shadow-hover">
             <span class="info-box-icon bg-green elevation-1"><i class="fas fa-user-friends"></i></span>
 
             <div class="info-box-content">
               <a href="{{route('customer.index')}}">
-                <span class="info-box-text text-dark">Customers</span>
+                <span class="info-box-text text-dark">Guests</span>
                 <span class="info-box-number text-dark">
-                  {{$customerCount}}
+                  6{{$customerCount}}
                 </span>
               </a>
             </div>
@@ -125,27 +125,27 @@
     
 
       <div class="clearfix hidden-md-up"></div>
-          
-        <div class="col-12 col-sm-6 col-md-3">
+
+        <div class="col-6 col-sm-6 col-md-3">
           <div class="info-box mb-3 shadow-hover">
             <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-envelope-open-text"></i></span>
 
             <div class="info-box-content">
               <a href="{{route('supplier.index')}}">
-                <span class="info-box-text text-dark">Suppliers</span>
+                <span class="info-box-text text-dark">Reports</span>
                 <span class="info-box-number text-dark">{{$supplierCount}}</span>
               </a>
             </div>
           </div>
         </div>
 
-        <div class="col-12 col-sm-6 col-md-3">
+        <div class="col-6 col-sm-6 col-md-3">
           <div class="info-box mb-3 shadow-hover">
             <span class="info-box-icon bg-navy elevation-1"><i class="fas fa-user-shield"></i></span>
 
             <div class="info-box-content">
               <a href="{{route('usermanagement.index')}}">
-                <span class="info-box-text text-dark">Admins</span>
+                <span class="info-box-text text-dark">Users</span>
                 <span class="info-box-number text-dark">{{$adminCount}}</span>
               </a>
             </div>
@@ -153,7 +153,7 @@
         </div>
       </div>
 
-      <br>
+      {{-- <br>
 
       <div class="row text-sm">
         <div class="col-12 col-md-6">
@@ -197,7 +197,7 @@
     
         </div>
       </div>
-   
+    --}}
     </div>
     <!--/. container-fluid -->
   </section>
