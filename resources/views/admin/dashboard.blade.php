@@ -24,53 +24,53 @@
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
-      <div class="btn-group mb-3">
+      {{-- <div class="btn-group mb-3">
         <a href="{{route('admin.index')}}" class="btn {{request()->q == ''?'btn-info':'btn-secondary'}}">Today</a>
         <a href="{{route('admin.index',['q'=>'monthly'])}}" class="btn {{request()->q == 'monthly'?'btn-info':'btn-secondary'}}">This Month</a>
         <a href="{{route('admin.index',['q'=>'yearly'])}}" class="btn {{request()->q == 'yearly'?'btn-info':'btn-secondary'}}">This Year</a>
-      </div>
+      </div> --}}
 
       <div class="row">
         <div class="col-lg-3 col-6">
           <!-- small box -->
           <div class="small-box bg-info">
             <div class="inner">
-              <h4>3{{number_format($totalSales)}}</h4>
+              <h4>{{$reservationCount}}</h4>
 
-              <p>Bookings</p>
+              <p>Active Reservations</p>
             </div>
             <div class="icon">
               <i class="fas fa-check-square"></i>
             </div>
-            <a href="{{route('sale.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{route('reservation.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
         <div class="col-lg-3 col-6">
           <div class="small-box bg-navy">
             <div class="inner">
-              <h4>1{{number_format($totalProfit)}}</h4>
+              <h4>{{$availableRoomCount}}</h4>
 
               <p>Rooms Available</p>
             </div>
             <div class="icon">
               <i class="fas fa-door-closed"></i>
             </div>
-            <a href="{{route('summary.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{route('room.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
         <div class="col-lg-3 col-6">
           <div class="small-box bg-success">
             <div class="inner">
-              <h4>Rs {{number_format($totalIncome)}}</h4>
+              <h4>{{$roomCount}}</h4>
 
-              <p>Income</p>
+              <p>Total Rooms</p>
             </div>
             <div class="icon">
-              <i class="fas fa-coins"></i>
+              <i class="fas fa-door-open"></i>
             </div>
-            <a href="{{route('income.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{route('room.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
@@ -78,20 +78,20 @@
           <!-- small box -->
           <div class="small-box bg-olive">
             <div class="inner">
-              <h4>Rs {{number_format($totalExpense)}}</h4>
+              <h4>Rs {{number_format($totalIncomes)}}</h4>
 
-              <p>Expenses</p>
+              <p>Total Billings</p>
             </div>
             <div class="icon">
               <i class="fas fa-wallet"></i>
             </div>
-            <a href="{{route('expense.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{route('income.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
        
       </div>
-
+{{-- 
       <div class="row">
         <div class="col-6 col-sm-6 col-md-3">
           <div class="info-box shadow-hover">
@@ -124,7 +124,7 @@
         </div>
     
 
-      <div class="clearfix hidden-md-up"></div>
+        <div class="clearfix hidden-md-up"></div>
 
         <div class="col-6 col-sm-6 col-md-3">
           <div class="info-box mb-3 shadow-hover">
@@ -151,7 +151,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
 
       {{-- <br>
 

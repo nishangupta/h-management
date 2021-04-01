@@ -49,7 +49,7 @@
                   <th>Confirmation</th>
                   <th>Checkin</th>
                   <th>Checkout</th>
-                  <th>Made on</th>
+                  <th>Payment</th>
                   <th>Actions</th>
                 </tr>
                 </thead>
@@ -64,7 +64,7 @@
                     <td>{{$reservation->confirmation_number}}</td>
                     <td>{{$reservation->checkin}}</td>
                     <td>{{$reservation->checkout}}</td>
-                    <td>{{$reservation->created_at->format('Y m d')}}</td>
+                    <td><span class="badge badge-{{$reservation->status=='pending'?'danger':'info'}}">{{$reservation->status}}</span></td>
                     <td>
                       <a href="{{route('reservation.edit',$reservation->id)}}" class="btn btn-xs btn-info float-left">Edit</a>
                       <form action="{{route('reservation.destroy',$reservation->id)}}" method="POST">

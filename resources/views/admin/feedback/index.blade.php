@@ -27,7 +27,6 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Feedback</h3>
-              <a href="{{route('category.create')}}" class="btn btn-primary btn-sm float-right">Create</a>
             </div>
             <div class="card-body">
               <x-input-error/>
@@ -37,7 +36,7 @@
                 <thead>
                 <tr>
                   <th>Sn</th>
-                  <th>Title</th>
+                  <th>Customer</th>
                   <th>Feedback</th>
                   <th>Created at</th>
                   <th>Actions</th>

@@ -47,7 +47,7 @@
 
               <div class="col-6">
                 <div class="form-group">
-                  <label for="">Occupants</label>
+                <label for="">No of people</label>
                   <input type="number" name="occupants" placeholder="occupants" value="{{old('occupants')??1}}"  class="form-control" required>
                 </div>
               </div>

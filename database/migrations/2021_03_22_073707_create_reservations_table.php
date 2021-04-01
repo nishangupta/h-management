@@ -29,6 +29,8 @@ class CreateReservationsTable extends Migration
 
             $table->text('feedback')->nullable();
 
+            $table->enum('status',['pending','paid'])->default('pending');
+
             $table->foreignId('room_id')->constrained();
             $table->timestamps();
         });

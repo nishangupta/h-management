@@ -23,7 +23,7 @@
     <div class="container-fluid">
       <div class="card card-outline card-primary">
         <div class="card-header">
-          <p class="card-title">Reservation Info</p>
+          <p class="card-title">Reservation Info  <span class="badge badge-{{$reservation->status == 'paid'?'success':'danger'}} text-uppercase ml-1">Status : {{$reservation->status}}</span></p>
           <a href="{{route('reservation.index')}}" class="btn btn-sm btn-primary float-right">Go back</a>
         </div>
         <div class="card-body">

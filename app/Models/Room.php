@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Room;
+use App\Models\RoomType;
+use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -25,6 +27,14 @@ class Room extends Model
     }
     public function reservedRooms(){
         return Room::where('is_reserved',1)->get();
+    }
+
+    public function getCurrentReservationAttribute(){
+        return $this->reservations->last();
+    }
+
+    public function reservations(){
+        return $this->hasMany(Reservation::class);
     }
 }
 

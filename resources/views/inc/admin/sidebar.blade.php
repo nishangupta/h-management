@@ -29,34 +29,9 @@
           </a>
         </li>
 
-        {{-- <li class="nav-item has-treeview {{request()->segment(2) == 'product'?'menu-open':''}}">
-          <a href="#" class="nav-link {{request()->segment(2) == 'product'?'active':''}}">
-            <i class="nav-icon far fas fa-check-square"></i>
-            <p>
-              Bookings
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            
-            <li class="nav-item">
-              <a href="{{route('product.create')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('product.index')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Manage</p>
-              </a>
-            </li>
-          </ul>
-        </li> --}}
-
         <li class="nav-item has-treeview {{request()->segment(2) == 'room'?'menu-open':''}}">
           <a href="#" class="nav-link">
-            <i class="nav-icon far fas fa-door-closed"></i>
+            <i class="nav-icon far fas fa-door-open"></i>
             <p>
               Room
               <i class="fas fa-angle-left right"></i>
@@ -86,7 +61,7 @@
 
         <li class="nav-item has-treeview {{request()->segment(2) == 'reservation'?'menu-open':''}}">
           <a href="#" class="nav-link">
-            <i class="nav-icon far fas fa-door-closed"></i>
+            <i class="nav-icon far fas fa-tags"></i>
             <p>
               Reservation
               <i class="fas fa-angle-left right"></i>
@@ -158,7 +133,7 @@
         
         <li class="nav-item has-treeview {{request()->segment(2) == 'menu'?'menu-open':''}}">
           <a href="#" class="nav-link">
-            <i class="nav-icon far fas fa-cash-register"></i>
+            <i class="nav-icon far fas fa-bars"></i>
             <p>
               Menu
               <i class="fas fa-angle-left right"></i>
@@ -182,7 +157,7 @@
 
         <li class="nav-item has-treeview {{request()->segment(2) == 'food'?'menu-open':''}}">
           <a href="#" class="nav-link">
-            <i class="nav-icon far fas fa-cash-register"></i>
+            <i class="nav-icon far fas fa-utensils"></i>
             <p>
               Food
               <i class="fas fa-angle-left right"></i>
@@ -301,29 +276,29 @@
           </ul>
         </li>
 
-        {{-- <li class="nav-item has-treeview {{request()->segment(2) == 'quotation'?'menu-open':''}}">
-          <a href="#" class="nav-link {{request()->segment(2) == 'quotation'?'active':''}}">
-            <i class="nav-icon far fas fa-envelope"></i>
+        <li class="nav-item has-treeview {{request()->segment(2) == 'income'?'menu-open':''}}">
+          <a href="#" class="nav-link">
+            <i class="nav-icon far fas fa-credit-card"></i>
             <p>
-              Quotations
+              Billings
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="{{route('quotation.create')}}" class="nav-link">
+            {{-- <li class="nav-item">
+              <a href="{{route('income.create')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Add</p>
               </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
-              <a href="{{route('quotation.index')}}" class="nav-link">
+              <a href="{{route('income.index')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Manage</p>
               </a>
             </li>
           </ul>
-        </li> --}}
+        </li>
         
         <li class="nav-item has-treeview {{request()->segment(2) == 'setting'?'menu-open':''}}">
           <a href="#" class="nav-link">

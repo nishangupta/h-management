@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Room;
 use App\Models\Product;
 use App\Models\RoomType;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use App\Http\Controllers\Controller;
@@ -42,7 +43,8 @@ class RoomController extends Controller
     }
     
     public function show(Room $room){
-        return view('admin.room.show',compact('room'));
+        $reservations = Reservation::where('room_id',$room->id)->latest()->take(500)->get();
+        return view('admin.room.show',compact('room','reservations'));
     }
 
     public function edit(Room $room){

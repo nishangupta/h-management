@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Income;
+use App\Models\Billing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
@@ -10,58 +10,60 @@ use App\Http\Controllers\Controller;
 class IncomeController extends Controller
 {
     public function index(){
-        $incomes = Income::latest()->get();
+        $incomes = Billing::with(array('reservation' => function($query) {
+            $query->select('id','fname','confirmation_number');
+        }))->latest()->get();
         return view('admin.income.index',compact('incomes'));
     }
 
-    public function create(){
-        return view('admin.income.create');
-    }
+    // public function create(){
+    //     return view('admin.income.create');
+    // }
 
-    public function store(Request $request){
-        $request->validate([
-            'title'=>'required|min:3',
-            'description'=>'nullable',
-            'price'=>'required',
-        ]);
+    // public function store(Request $request){
+    //     $request->validate([
+    //         'title'=>'required|min:3',
+    //         'description'=>'nullable',
+    //         'price'=>'required',
+    //     ]);
 
-        $income = Income::create([
-            'title'=>$request->title,
-            'description'=>$request->description,
-            'price'=>$request->price,
-        ]);
+    //     $income = Income::create([
+    //         'title'=>$request->title,
+    //         'description'=>$request->description,
+    //         'price'=>$request->price,
+    //     ]);
 
-        return redirect()->route('income.index')->with('success','Income created!');
-    }
+    //     return redirect()->route('income.index')->with('success','Income created!');
+    // }
     
-    public function show(Income $income){
-        return view('admin.income.show',compact('income'));
-    }
+    // public function show(Income $income){
+    //     return view('admin.income.show',compact('income'));
+    // }
 
-    public function edit(Income $income){
-        return view('admin.income.edit',compact('income'));
-    }
+    // public function edit(Income $income){
+    //     return view('admin.income.edit',compact('income'));
+    // }
 
-    public function update(Request $request,Income $income){
-        $request->validate([
-            'title'=>'required|min:3',
-            'description'=>'nullable',
-            'price'=>'required',
-        ]);
+    // public function update(Request $request,Income $income){
+    //     $request->validate([
+    //         'title'=>'required|min:3',
+    //         'description'=>'nullable',
+    //         'price'=>'required',
+    //     ]);
 
-        $income->update([
-            'title'=>$request->title,
-            'description'=>$request->description,
-            'price'=>$request->price,
-        ]);
+    //     $income->update([
+    //         'title'=>$request->title,
+    //         'description'=>$request->description,
+    //         'price'=>$request->price,
+    //     ]);
         
-        return redirect(route('income.index'))->with('success','income updated!');
-    }
+    //     return redirect(route('income.index'))->with('success','income updated!');
+    // }
     
-    public function destroy(Income $income){
-        $income->delete();
-        return redirect()->route('income.index')->with('success','income deleted');
-    }
+    // public function destroy(Income $income){
+    //     $income->delete();
+    //     return redirect()->route('income.index')->with('success','income deleted');
+    // }
 
     public function filter(Request $request){
         if($request->datepicker){
@@ -69,9 +71,13 @@ class IncomeController extends Controller
             $start = Carbon::parse($data[0]);
             $end = Carbon::parse($data[1]);
             
-            $incomes = Income::whereBetween('created_at',[$start,$end])->get();
+            $incomes = Billing::whereBetween('created_at',[$start,$end])->with(array('reservation' => function($query) {
+                $query->select('id','fname','confirmation_number');
+            }))->get();
         }else{
-            $incomes = Income::whereDay('created_at',Carbon::today())->get();
+            $incomes = Billing::whereDay('created_at',Carbon::today())->with(array('reservation' => function($query) {
+                $query->select('id','fname','confirmation_number');
+            }))->get();
         }
         
         return view('admin.income.index',compact('incomes'));

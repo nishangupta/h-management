@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-6">
-          <h1>Incomes</h1>
+          <h1>Billings</h1>
         </div>
         <div class="col-sm-6">
           <form action="{{route('income.filter')}}" class="float-right" method="Get">
@@ -34,8 +34,8 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Incomes</h3>
-              <a href="{{route('income.create')}}" class="btn btn-primary btn-sm float-right">Create</a>
+              <h3 class="card-title">Billings</h3>
+              {{-- <a href="{{route('income.create')}}" class="btn btn-primary btn-sm float-right">Create</a> --}}
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -47,9 +47,10 @@
                 <thead>
                 <tr>
                   <th>Sn</th>
-                  <th>Title</th>
-                  <th>Price</th>
-                  <th>Created at</th>
+                  <th>Reservation Customer name</th>
+                  <th>Confirmation number</th>
+                  <th>Total amount</th>
+                  <th>Paid on</th>
                   <th>Actions</th>
                 </tr>
                 </thead>
@@ -57,15 +58,12 @@
                   @foreach($incomes as $income)
                   <tr>
                     <td>{{$income->id}}</td>
-                    <td><a href="{{route('income.show',$income->id)}}">{{$income->title}}</a></td>
-                    <td>{{$income->price}}</td>
-                    <td>{{$income->created_at->format('Y m d')}}</td>
+                    <td>{{$income->reservation->fname}}</td>
+                    <td>{{$income->reservation->confirmation_number}}</td>
+                    <td>{{$income->total}}</td>
+                    <td>{{$income->updated_at->format('Y m d')}}</td>
                     <td>
-                      <a href="{{route('income.edit',$income)}}" class="btn btn-sm btn-info">Edit</a>
-                      <form action="{{route('income.destroy',$income)}}" method="POST">
-                        @csrf @method('delete')
-                        <button class="btn dltBtn btn-danger btn-sm">Delete</button>
-                      </form>
+                      <a href="{{route('billing.create',$income->reservation_id)}}" class="btn btn-sm btn-primary">View</a>
                     </td>
                   </tr>
                   @endforeach

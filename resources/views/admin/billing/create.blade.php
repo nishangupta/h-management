@@ -17,19 +17,19 @@
       </div>
     </div><!-- /.container-fluid -->
   </section>
-
   
   <section class="content no-print">
     <div class="container-fluid">
-
+      <x-alert-msg />
       <div class="card card-outline card-primary">
         <div class="card-header">
-          <h3 class="card-title">{{$reservation->fname.' '.$reservation->lname}}'s reservation</h3>
-
+          <h3 class="card-title">{{$reservation->fname.' '.$reservation->lname}}'s reservation  <span class="badge badge-{{$reservation->status == 'paid'?'success':'danger'}} text-uppercase ml-5">Status : {{$reservation->status}}</span></h3>
+          
           <div class="card-tools">
             <a href="{{route('reservation.show',$reservation->id)}}" class="btn btn-sm btn-primary">Back to reservation</a>
           </div>
         </div>
+        @if($reservation->status !== "paid")
         <div class="card-body">
           <form action="{{route('billing.store')}}" method="POST">
             @csrf 
@@ -39,6 +39,7 @@
                 <div class="form-group">
                   <label for="">Service charge</label>
                   <input type="number"   class="form-control" name="service_charge" value="{{$billing->service_charge??''}}">
+                  <input type="hidden"  class="form-control" name="total" value="{{$billing->total??''}}">
                 </div>
               </div>
               <div class="col-12 col-md-6">
@@ -65,6 +66,7 @@
           </form>
      
         </div>
+        @endif
           
         </div>
       </div>
@@ -130,7 +132,6 @@
                     <th>Qty</th>
                     <th>Price</th>
                     <th>Subtotal</th>
-                    <th>Due Amount</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -143,7 +144,6 @@
                         <td>{{$p->qty}}</td>
                         <td>{{number_format($p->price)}}</td>
                         <td>{{number_format($p->total)}}</td>
-                        <td>{{number_format($order->due_amount)}}</td>
                       </tr>
                       @endforeach
                     @empty
@@ -171,11 +171,15 @@
                 <div class="table-responsive">
                   <table class="table">
                     <tr>
+                      <th style="width:50%">Paid total:</th>
+                      <td>{{$paidTotal}}</td>
+                    </tr>
+                    <tr>
                       <th style="width:50%">Due Total:</th>
                       <td>{{$subTotal}}</td>
                     </tr>
                     <tr>
-                      <th>Room rate ({{$days}} days):</th>
+                      <th>Rooms({{$days}} days):</th>
                       <td>{{$roomRate}}</td>
                     </tr>
                     <tr>
@@ -205,6 +209,14 @@
               <div class="col-6">
                 <button onclick="window.print()" 
                   target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</button>
+              </div>
+              <div class="col-6">
+                @if($reservation->status !=='paid')
+                <form action="{{route('billing.update',['reservation'=>$reservation->id])}}" class="float-right" method="POST">
+                  @csrf @method('put')
+                  <button type="submit" class="btn btn-success btn-sm">Set as paid</button>
+                </form>
+                @endif
               </div>
             </div>
           </div>

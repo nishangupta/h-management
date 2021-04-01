@@ -71,6 +71,46 @@
             
             </div>
           </div>
+
+
+          <div class="card card-outline card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Latest reservations</h3>
+            </div>
+            <div class="card-body">
+              <x-input-error />
+
+              <table id="example1" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Customer Name</th>
+                  <th>Room rate</th>
+                  <th>Phone</th>
+                  <th>Confirmation</th>
+                  <th>Checkin</th>
+                  <th>Checkout</th>
+                  <th>Paid</th>
+                </tr>
+                </thead>
+                <tbody>
+                  @foreach($reservations as $r)
+                  <tr>
+                    <td>{{$r->id}}</td>
+                    <td><a href="{{route('reservation.show',$r->id)}}">{{$r->fname.' '.$r->lname}}</a></td>
+                    <td>{{$r->room_rate}}</td>
+                    <td>{{$r->phone}}</td>
+                    <td>{{$r->confirmation_number}}</td>
+                    <td>{{$r->checkin}}</td>
+                    <td>{{$r->checkout}}</td>
+                    <td><span class="badge badge-{{$r->status=='pending'?'danger':'info'}}">{{$r->status}}</span></td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -78,15 +118,33 @@
 </div>
 @endsection
 
+@push('css')
+<link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+@endpush
+
 @push('js')
+<script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 <script>
-  $(document).ready(function(){
-    $('.dltBtn').click(function(e){
-      e.preventDefault();
-      if(confirm('Are you sure to delete!')){
-        this.form.submit();
-      }
-    })
+$(function () {
+
+
+  $("#example1").DataTable({
+    "responsive": true,
+    "autoWidth": false,
+    "paging":true,
+    "sorting":false,
+  });
+
+  $('.dltBtn').click(function(e){
+    e.preventDefault()
+    if(confirm('Are you sure to delete')){
+      this.form.submit();
+    }
   })
+});
 </script>
 @endpush

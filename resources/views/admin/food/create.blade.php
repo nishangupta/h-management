@@ -12,7 +12,6 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{route('product.index')}}">Products</a></li>
             <li class="breadcrumb-item active">Create</li>
           </ol>
         </div>

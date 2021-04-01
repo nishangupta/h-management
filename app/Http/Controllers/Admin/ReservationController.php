@@ -38,7 +38,7 @@ class ReservationController extends Controller
             'room_rate'=>'required',
         ]);
         
-        $conf_no = Str::random();
+        $conf_no = Str::random(10);
 
         DB::table('rooms')->where('id',$request->room_id)->update([
             'is_reserved'=>1 //is_reserved
@@ -103,10 +103,10 @@ class ReservationController extends Controller
         ]);
         
         DB::table('rooms')->where('id',$request->room_id)->update([
-            'is_reserved'=>1 //is_reserved
+            'is_reserved'=>$reservation->status=='paid'?0:1,
         ]);
 
-        return redirect(route('reservation.index'))->with('success','Reservation updated!');
+        return redirect()->route('reservation.show',$reservation->id)->with('success','Reservation updated!');
     }
     
     public function destroy(Reservation $reservation){
