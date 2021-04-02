@@ -8,14 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class AccountController extends Controller
 {
     public function index(){
-        // $user = auth()->user();
-
         return redirect(route('admin.index'));
-
-        // if($user->hasRole('admin')){
-        // }else{
-        //     return redirect(route('user.index'));
-        // }
     }
 
     public function logout(){

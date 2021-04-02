@@ -52,9 +52,6 @@
                       </select>
                     </div>
                   </div>
-                <div>
-               
-                <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="">Status</label>
@@ -70,20 +67,23 @@
                       <input type="number" name="rate" placeholder="Rate" value="{{old('rate')}}" class="form-control" >
                     </div>
                   </div>
-                <div>
+
+                  <br>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="">Description</label>
+                      <textarea class="textarea form-control" name="description" placeholder="Short Description here">{{ old('description')}}</textarea>
+                    </div>
+                  </div>
                
-                <br>
+              
+                  <button type="submit" class="btn btn-primary mt-4">Submit</button>
       
-                <div class="form-group">
-                  <label for="">Description</label>
-                  <textarea class="textarea form-control" name="description" placeholder="Short Description here">{{ old('description')}}</textarea>
-                </div>
-            
-                <button type="submit" class="btn btn-primary mt-4">Submit</button>
-                
+                <div>
+                            
               </form>
             </div>
-            <!-- /.card-body -->
           </div>
         </div>
         <!-- /.col -->

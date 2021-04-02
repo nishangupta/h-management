@@ -33,7 +33,7 @@
           <a href="#" class="nav-link">
             <i class="nav-icon far fas fa-door-open"></i>
             <p>
-              Room
+              Rooms
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
@@ -63,7 +63,7 @@
           <a href="#" class="nav-link">
             <i class="nav-icon far fas fa-tags"></i>
             <p>
-              Reservation
+              Reservations
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
@@ -135,7 +135,7 @@
           <a href="#" class="nav-link">
             <i class="nav-icon far fas fa-bars"></i>
             <p>
-              Menu
+              Menus
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
@@ -159,7 +159,7 @@
           <a href="#" class="nav-link">
             <i class="nav-icon far fas fa-utensils"></i>
             <p>
-              Food
+              Foods
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>

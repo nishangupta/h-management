@@ -26,16 +26,14 @@ class BillingController extends Controller
             $days = 1; 
         }
         
+        $dueTotal = 0;
         $subTotal = 0;
-        foreach($orders as $o){
-            $bal = $o->total_amount - $o->paid_amount;
-            $subTotal += $bal;
-        }   
-
         $paidTotal = 0;
         foreach($orders as $o){
-            $bal = $o->paid_amount;
-            $paidTotal += $bal;
+            $bal = $o->due_amount;
+            $dueTotal += $bal;
+            $subTotal += $o->total_amount;
+            $paidTotal += $o->paid_amount;
         }   
 
         $roomRate = $reservation->room_rate * $days;
@@ -45,10 +43,10 @@ class BillingController extends Controller
         if($billing){
             $otherCost = $billing->telephone + $billing->misc + $billing->service_charge;
         }
-        $grandTotal  = $roomRate + $subTotal + $otherCost;
+        $grandTotal  = $roomRate + $dueTotal + $otherCost;
         
         return view('admin.billing.create',compact('reservation','orders','days',
-                'billing','subTotal','grandTotal','roomRate','paidTotal'));
+                'billing','dueTotal','grandTotal','roomRate','paidTotal','subTotal'));
     }
     
     public function show(Billing $billing){
@@ -109,18 +107,14 @@ class BillingController extends Controller
             $days = 1; 
         }
         
-        $orders = $reservation->orders;
+        $dueTotal = 0;
         $subTotal = 0;
-        foreach($orders as $o){
-            $bal = $o->total_amount - $o->paid_amount;
-            $subTotal += $bal;
-        }   
-        $roomRate = $reservation->room_rate * $days;
-
         $paidTotal = 0;
         foreach($orders as $o){
-            $bal = $o->paid_amount;
-            $paidTotal += $bal;
+            $bal = $o->due_amount;
+            $dueTotal += $bal;
+            $subTotal += $o->total_amount;
+            $paidTotal += $o->paid_amount;
         }   
 
         $billing = $reservation->billing;
@@ -128,20 +122,20 @@ class BillingController extends Controller
         if($billing){
             $otherCost = $billing->telephone + $billing->misc + $billing->service_charge;
             $billing->update([
-                'total'=>$roomRate + $subTotal + $otherCost,
+                'total'=>$roomRate + $dueTotal + $otherCost,
             ]);
         }else{
             Billing::create([
-                'total'=>$roomRate + $subTotal + $otherCost,
+                'total'=>$roomRate + $dueTotal + $otherCost,
                 'reservation_id'=>$reservation->id,
             ]);
         }
 
-        $grandTotal  = $roomRate + $subTotal + $otherCost;
+        $grandTotal  = $roomRate + $dueTotal + $otherCost;
         session()->flash('success','Reservation set as paid');
 
         return view('admin.billing.create',compact('reservation','orders','days',
-        'billing','subTotal','grandTotal','roomRate','paidTotal'));
+        'billing','dueTotal','grandTotal','roomRate','paidTotal','subTotal'));
     }
     
 }

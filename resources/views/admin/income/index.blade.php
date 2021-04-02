@@ -58,9 +58,9 @@
                   @foreach($incomes as $income)
                   <tr>
                     <td>{{$income->id}}</td>
-                    <td>{{$income->reservation->fname}}</td>
+                    <td><a href="{{route('billing.create',$income->reservation_id)}}">{{$income->reservation->fname.' '.$income->reservation->lname}}</a></td>
                     <td>{{$income->reservation->confirmation_number}}</td>
-                    <td>{{$income->total}}</td>
+                    <td>{{number_format($income->total)}}</td>
                     <td>{{$income->updated_at->format('Y m d')}}</td>
                     <td>
                       <a href="{{route('billing.create',$income->reservation_id)}}" class="btn btn-sm btn-primary">View</a>

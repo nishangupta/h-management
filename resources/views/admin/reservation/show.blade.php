@@ -15,7 +15,7 @@
           </ol>
         </div>
       </div>
-    </div><!-- /.container-fluid -->
+    </div>
   </section>
 
   <!-- Main content -->
@@ -104,7 +104,11 @@
           <p class="card-title">Orders</p>
         </div>
         <div class="card-body">
+          @if($reservation->status !=='paid')
           <a href="{{route('order.create',$reservation->id)}}" class="btn btn-primary btn-sm mb-3">Add order</a>
+          @else
+          <p>Bill successfully created! Now can't add more orders.</p>
+          @endif
           <table id="example1" class="table table-bordered table-hover">
             <thead>
             <tr>

@@ -23,10 +23,10 @@
       <x-alert-msg />
       <div class="card card-outline card-primary">
         <div class="card-header">
-          <h3 class="card-title">{{$reservation->fname.' '.$reservation->lname}}'s reservation  <span class="badge badge-{{$reservation->status == 'paid'?'success':'danger'}} text-uppercase ml-5">Status : {{$reservation->status}}</span></h3>
+          <h3 class="card-title">{{$reservation->fname.' '.$reservation->lname}}'s reservation  <span class="badge badge-{{$reservation->status == 'paid'?'success':'danger'}} text-uppercase ml-2">Status : {{$reservation->status}}</span></h3>
           
           <div class="card-tools">
-            <a href="{{route('reservation.show',$reservation->id)}}" class="btn btn-sm btn-primary">Back to reservation</a>
+            <a href="{{route('reservation.show',$reservation->id)}}" class="btn btn-sm btn-primary">Go to reservation</a>
           </div>
         </div>
         @if($reservation->status !== "paid")
@@ -171,12 +171,16 @@
                 <div class="table-responsive">
                   <table class="table">
                     <tr>
+                      <th style="width:50%">Sub total:</th>
+                      <td>{{$subTotal}}</td>
+                    </tr>
+                    <tr>
                       <th style="width:50%">Paid total:</th>
                       <td>{{$paidTotal}}</td>
                     </tr>
                     <tr>
                       <th style="width:50%">Due Total:</th>
-                      <td>{{$subTotal}}</td>
+                      <td>{{$dueTotal}}</td>
                     </tr>
                     <tr>
                       <th>Rooms({{$days}} days):</th>

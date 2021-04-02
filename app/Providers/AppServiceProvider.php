@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
     {
         if(!Cache::has('settings')){
             Cache::rememberForever('settings',function(){
-                return DB::table('settings')->get();
+                return DB::table('settings')->select('title','value')->get();
             });
         }
 
